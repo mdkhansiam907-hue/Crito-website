@@ -1,0 +1,577 @@
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #070b14;
+    --panel: rgba(18, 25, 40, 0.72);
+    --panel-border: rgba(255, 255, 255, 0.08);
+
+    --text: #f4f7fb;
+    --muted: #8792a7;
+
+    --button: rgba(255, 255, 255, 0.055);
+    --button-hover: rgba(255, 255, 255, 0.11);
+
+    --operator: rgba(70, 110, 255, 0.2);
+    --scientific: rgba(126, 87, 194, 0.18);
+
+    --accent: #6c8cff;
+    --accent-light: #8ea5ff;
+
+    --danger: rgba(255, 77, 109, 0.18);
+
+    --shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(74, 94, 255, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(151, 71, 255, 0.1),
+            transparent 30%
+        ),
+        var(--bg);
+}
+
+
+/* ================================
+   MAIN APP
+================================ */
+
+.calculator-app {
+    width: min(1150px, 100%);
+
+    display: grid;
+    grid-template-columns: minmax(0, 760px) 320px;
+
+    gap: 22px;
+}
+
+
+/* ================================
+   GLASS PANELS
+================================ */
+
+.calculator,
+.history-panel {
+    background: var(--panel);
+
+    border: 1px solid var(--panel-border);
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+
+/* ================================
+   CALCULATOR
+================================ */
+
+.calculator {
+    padding: 24px;
+}
+
+.calculator-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.calculator-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.calculator-header p {
+    margin-top: 5px;
+
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* ================================
+   MODE BUTTON
+================================ */
+
+.mode-btn {
+    border: 1px solid rgba(255,255,255,.1);
+
+    background: rgba(255,255,255,.06);
+
+    color: var(--accent-light);
+
+    padding: 9px 15px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: .2s ease;
+}
+
+.mode-btn:hover {
+    background: rgba(255,255,255,.12);
+}
+
+
+/* ================================
+   DISPLAY
+================================ */
+
+.display {
+    min-height: 145px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    padding: 24px;
+
+    margin-bottom: 18px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.02)
+        );
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    overflow: hidden;
+}
+
+.expression {
+    width: 100%;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    text-align: right;
+
+    white-space: nowrap;
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.expression::-webkit-scrollbar {
+    display: none;
+}
+
+.result {
+    margin-top: 8px;
+
+    max-width: 100%;
+
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    text-align: right;
+
+    white-space: nowrap;
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.result::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ================================
+   BUTTON GRID
+================================ */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 10px;
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn {
+    min-height: 58px;
+
+    border: 1px solid rgba(255,255,255,.05);
+
+    border-radius: 15px;
+
+    background: var(--button);
+
+    color: var(--text);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform .12s ease,
+        background .2s ease,
+        border-color .2s ease;
+
+    user-select: none;
+}
+
+.btn:hover {
+    background: var(--button-hover);
+
+    border-color: rgba(255,255,255,.12);
+}
+
+.btn:active {
+    transform: scale(.94);
+}
+
+
+/* Number */
+.number {
+    background: rgba(255,255,255,.045);
+}
+
+
+/* Scientific */
+.scientific {
+    background: var(--scientific);
+
+    color: #c8b7ff;
+}
+
+
+/* Operators */
+.operator {
+    background: var(--operator);
+
+    color: #aebdff;
+
+    font-size: 19px;
+}
+
+
+/* Clear */
+.clear {
+    background: var(--danger);
+
+    color: #ff8ca4;
+}
+
+
+/* Equal */
+.equal {
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #536ff5
+        );
+
+    color: white;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 10px 25px rgba(80, 105, 255, .25);
+}
+
+.equal:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent-light),
+            var(--accent)
+        );
+}
+
+
+/* ================================
+   KEYBOARD INFO
+================================ */
+
+.keyboard-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 17px;
+
+    color: #657188;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   HISTORY
+================================ */
+
+.history-panel {
+    min-height: 600px;
+
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.history-header h2 {
+    font-size: 17px;
+}
+
+.history-header p {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.history-clear {
+    border: none;
+
+    background: transparent;
+
+    color: #ff8299;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+.history-list {
+    flex: 1;
+
+    margin-top: 15px;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+}
+
+
+/* History item */
+
+.history-item {
+    padding: 15px;
+
+    margin-bottom: 9px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.05);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.history-item:hover {
+    background: rgba(255,255,255,.08);
+
+    transform: translateY(-1px);
+}
+
+.history-expression {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    word-break: break-all;
+}
+
+.history-result {
+    margin-top: 7px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: white;
+}
+
+
+/* Empty history */
+
+.empty-history {
+    height: 100%;
+
+    min-height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #586276;
+}
+
+.empty-history span {
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+.empty-history p {
+    font-size: 12px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 950px) {
+
+    .calculator-app {
+        grid-template-columns: 1fr;
+    }
+
+    .history-panel {
+        min-height: 300px;
+    }
+
+    .history-list {
+        max-height: 300px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .calculator {
+        padding: 15px;
+
+        border-radius: 20px;
+    }
+
+    .history-panel {
+        border-radius: 20px;
+    }
+
+    .calculator-header h1 {
+        font-size: 17px;
+    }
+
+    .calculator-header p {
+        font-size: 10px;
+    }
+
+    .display {
+        min-height: 120px;
+
+        padding: 18px;
+    }
+
+    .buttons {
+        gap: 7px;
+    }
+
+    .btn {
+        min-height: 52px;
+
+        border-radius: 12px;
+
+        font-size: 14px;
+    }
+
+    .keyboard-info {
+        display: none;
+    }
+}
+
+
+@media (max-width: 380px) {
+
+    .calculator {
+        padding: 10px;
+    }
+
+    .buttons {
+        gap: 5px;
+    }
+
+    .btn {
+        min-height: 48px;
+
+        font-size: 12px;
+    }
+}

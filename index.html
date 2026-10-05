@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="calculator-app">
+
+        <!-- Calculator -->
+        <section class="calculator">
+
+            <div class="calculator-header">
+                <div>
+                    <h1>Scientific Calculator</h1>
+                    <p>Advanced mathematical calculator</p>
+                </div>
+
+                <button id="angleMode" class="mode-btn">DEG</button>
+            </div>
+
+            <!-- Display -->
+            <div class="display">
+                <div id="expression" class="expression">0</div>
+                <div id="result" class="result">0</div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons">
+
+                <!-- Top Controls -->
+                <button class="btn function clear" data-action="clear">AC</button>
+                <button class="btn function" data-action="delete">DEL</button>
+                <button class="btn function" data-value="(">(</button>
+                <button class="btn function" data-value=")">)</button>
+                <button class="btn operator" data-value="/">÷</button>
+
+                <!-- Scientific -->
+                <button class="btn scientific" data-value="sin(">sin</button>
+                <button class="btn scientific" data-value="cos(">cos</button>
+                <button class="btn scientific" data-value="tan(">tan</button>
+                <button class="btn scientific" data-value="log(">log</button>
+                <button class="btn scientific" data-value="ln(">ln</button>
+
+                <button class="btn scientific" data-value="asin(">sin⁻¹</button>
+                <button class="btn scientific" data-value="acos(">cos⁻¹</button>
+                <button class="btn scientific" data-value="atan(">tan⁻¹</button>
+                <button class="btn scientific" data-value="sqrt(">√</button>
+                <button class="btn scientific" data-value="^">xʸ</button>
+
+                <button class="btn scientific" data-value="π">π</button>
+                <button class="btn scientific" data-value="e">e</button>
+                <button class="btn scientific" data-value="!">n!</button>
+                <button class="btn scientific" data-value="%">%</button>
+                <button class="btn operator" data-value="*">×</button>
+
+                <!-- Numbers -->
+                <button class="btn number" data-value="7">7</button>
+                <button class="btn number" data-value="8">8</button>
+                <button class="btn number" data-value="9">9</button>
+                <button class="btn operator" data-value="-">−</button>
+                <button class="btn operator" data-value="+">+</button>
+
+                <button class="btn number" data-value="4">4</button>
+                <button class="btn number" data-value="5">5</button>
+                <button class="btn number" data-value="6">6</button>
+                <button class="btn number zero" data-value="0">0</button>
+                <button class="btn equal" data-action="calculate">=</button>
+
+                <button class="btn number" data-value="1">1</button>
+                <button class="btn number" data-value="2">2</button>
+                <button class="btn number" data-value="3">3</button>
+                <button class="btn number" data-value=".">.</button>
+                <button class="btn scientific" data-value="Ans">Ans</button>
+
+            </div>
+
+            <div class="keyboard-info">
+                <span>⌨ Keyboard supported</span>
+                <span>•</span>
+                <span>Enter = Calculate</span>
+                <span>•</span>
+                <span>Esc = Clear</span>
+            </div>
+
+        </section>
+
+        <!-- History -->
+        <aside class="history-panel">
+
+            <div class="history-header">
+                <div>
+                    <h2>History</h2>
+                    <p>Your calculations</p>
+                </div>
+
+                <button id="clearHistory" class="history-clear">
+                    Clear
+                </button>
+            </div>
+
+            <div id="historyList" class="history-list">
+                <div class="empty-history">
+                    <span>⌁</span>
+                    <p>No calculations yet</p>
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
